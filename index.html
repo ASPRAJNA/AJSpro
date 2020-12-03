@@ -55,7 +55,7 @@
             border: 2px solid hotpink;
         }
         .btn-outline-pink:hover {
-            background-color: hotpink;
+            background-color: rgb(218, 166, 192);
             color: white;
         }
     </style>
@@ -71,6 +71,7 @@
         </div>
     </center>
     <div class="container" ng-app="myApp" ng-controller="myCtrl">
+        <div class="container">
         Search<input type="search" ng-model="test" placeholder="Search The Song" ng-click="settrue('fav')">
 
         <button class="btn btn-outline-dark" ng-click="orderByMe('name')">ORDER BY NAME</button>
@@ -92,6 +93,7 @@
             </li>
         </ul>
     </div>
+</div>
     <script>
         function myFunction(x) {
             x.classList.toggle("fa-heart-o");
