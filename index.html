@@ -24,9 +24,10 @@
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
                 0 6px 20px 0 rgba(0, 0, 0, 0.19);
             padding: 10px;
-            margin: 20px;
+            margin-top: 20px;
             font-family: "Galada";
             font-size: 32px;
+            width: 100%;
         }
         audio {
             width: 50%;
@@ -55,21 +56,21 @@
             border: 2px solid hotpink;
         }
         .btn-outline-pink:hover {
-            background-color: rgb(218, 166, 192);
+            background-color: hotpink;
             color: white;
         }
     </style>
 </head>
 <body>
-    <div class="bg-dark">
-        <h1 style="padding: 20px;color: white;font-family: 'Vast Shadow';text-align: center;">SELENA GOMEZ SONGS</h1>
+    <div>
+        <h1 style="padding: 20px;color:black;font-family: 'Vast Shadow';text-align: center;">SELENA GOMEZ SONGS</h1>
     </div>
     <br/><br/>
-    <center>
+   <!-- <center >
         <div class="polaroid">
             <img src="https://4.bp.blogspot.com/-_PAqmcv6JVM/U-KC1b5b1zI/AAAAAAABXL4/QjDELfnbXLM/s1600/selena-gomez-for-adidas-neo-autumn-2014-11.jpg" style="width: 100%; height: 100%" />
         </div>
-    </center>
+    </center>-->
     <div class="container" ng-app="myApp" ng-controller="myCtrl">
         <div class="container">
         Search<input type="search" ng-model="test" placeholder="Search The Song" ng-click="settrue('fav')">
