@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Galada" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Vast Shadow" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Shrikhand" rel="stylesheet" />
+    <style>
+        div.polaroid {
+            height: 450px;
+            width: 350px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+                0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+        li {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+                0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            padding: 10px;
+            margin: 20px;
+            font-family: "Galada";
+            font-size: 32px;
+        }
+        audio {
+            width: 50%;
+        }
+        @media only screen and (max-width: 600px) {
+            div.polaroid {
+                height: 250px;
+                width: 200px;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+                    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            }
+            audio {
+                width: 100%;
+            }
+        }
+        p, input, button {
+            padding: 10px;
+            font-family: "Shrikhand";
+            margin: 20px;
+        }
+         input, p {
+            width: 100%;
+        }
+        .btn-outline-pink {
+            color: hotpink;
+            border: 2px solid hotpink;
+        }
+        .btn-outline-pink:hover {
+            background-color: hotpink;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-dark">
+        <h1 style="padding: 20px;color: white;font-family: 'Vast Shadow';text-align: center;">SELENA GOMEZ SONGS</h1>
+    </div>
+    <br/><br/>
+    <center>
+        <div class="polaroid">
+            <img src="https://4.bp.blogspot.com/-_PAqmcv6JVM/U-KC1b5b1zI/AAAAAAABXL4/QjDELfnbXLM/s1600/selena-gomez-for-adidas-neo-autumn-2014-11.jpg" style="width: 100%; height: 100%" />
+        </div>
+    </center>
+    <div class="container" ng-app="myApp" ng-controller="myCtrl">
+        Search<input type="search" ng-model="test" placeholder="Search The Song" ng-click="settrue('fav')">
+
+        <button class="btn btn-outline-dark" ng-click="orderByMe('name')">ORDER BY NAME</button>
+        <button class="btn btn-outline-success" ng-click="orderByMe('view')">ORDER BY VIEW</button>
+        <button class="btn btn-outline-primary" ng-click="orderByMe('likes')">ORDER BY LIKES</button>
+        <button class="btn btn-outline-pink" ng-click="favo('fav')">FAVOURITE SONGS</button>
+        <ul>
+            <li ng-repeat="x in names| filter:test | orderBy:myOrderBy" style="list-style-type: none">{{x.name}}
+                <i ng-hide="hide"><i class="material-icons" id="hide" style="display: block; font-size: 36px; cursor: pointer; float: right;margin-left:15px" ng-click="removeItem($index)">delete</i></i>
+                <i ng-show="hide1"> <i onclick="myFunction(this)" class="fa fa-heart" style="font-size:35px;cursor:pointer;color:hotpink;float:right;"></i></i><br>
+                <i class='fa fa-eye' style='font-size:19px;margin-left:10px;color: green;'>{{x.view}}M</i>
+                <i class='fa fa-thumbs-o-down' style='font-size:19px;margin-left:10px;color: red;'>{{x.dislikes}}</i>
+                <i class='fa fa-thumbs-o-up' style='font-size:19px;margin-left:10px;color: blue;'>{{x.likes}}K</i>
+                <center>
+                <audio controls>
+                    <source ng-src="{{x.src}}" type="audio/mpeg">
+                </audio>
+                </center>
+            </li>
+        </ul>
+    </div>
+    <script>
+        function myFunction(x) {
+            x.classList.toggle("fa-heart-o");
+        }
+        var app = angular.module("myApp", []);
+        app.controller("myCtrl", function ($scope) {
+            $scope.names = [
+                { name: "We don't talk anymore", view: 2555, likes: 10, dislikes: "335K", src: "0.mp3", fav: 'FAVOURITE' },
+                { name: "Come and get it", view: 687, likes: 3.8, dislikes: "222K", src: "4.mp3", fav: 'false' },
+                { name: "Hearts wants what it wants", view: 701, likes: 4.6, dislikes: "150K", src: "13.mp3", fav: 'FAVOURITE' },
+                { name: "My dilemma", view: 10, likes: 119, dislikes: "2K", src: "11.mp3", fav: 'false' },
+                { name: "Boyfriend", view: 59, likes: 1.4, dislikes: "72K", src: "3.mp3", fav: 'false' },
+                { name: "Bad Liar", view: 319, likes: 3.1, dislikes: "151K", src: "2.mp3", fav: 'false' },
+                { name: "Who says", view: 313, likes: 1.8, dislikes: "63K", src: "14.mp3", fav: 'FAVOURITE' },
+                { name: "Slow Down", view: 354, likes: 2.2, dislikes: "90K", src: "12.mp3", fav: 'false' },
+                { name: "Feel me", view: 40, likes: 788, dislikes: "70K", src: "5.mp3", fav: 'FAVOURITE' },
+                { name: "Same Old Love", view: 23, likes: 118, dislikes: "50K", src: "1.mp3", fav: 'FAVOURITE' },
+                { name: "Kill Him with Kindness", view: 21, likes: 219, dislikes: "92K", src: "7.mp3", fav: 'false' },
+                { name: "Good for you", view: 63, likes: 48, dislikes: "7K", src: "6.mp3", fav: 'false' },
+                { name: "Look at her Now", view: 532, likes: 578, dislikes: "34K", src: "8.mp3", fav: 'false' },
+                { name: "Love Song", view: 678, likes: 498, dislikes: "9.9K", src: "10.mp3", fav: 'false' },
+                { name: "Hands to My self", view: 28, likes: 418, dislikes: "10.2K", src: "15.mp3", fav: 'false' },
+                { name: "Only you", view: 98, likes: 518, dislikes: "7.2K", src: "16.mpeg", fav: 'FAVOURITE' },
+                { name: "It ain't me", view: 918, likes: 218, dislikes: "1.2K", src: "17.mpeg", fav: 'false' },
+                { name: "Taki Taki", view: 567, likes: 68, dislikes: "92K", src: "18.mpeg", fav: 'FAVOURITE' },
+                { name: "Hold Tight", view: 50, likes: 68, dislikes: "9K", src: "19.mpeg", fav: 'false' },
+                { name: "I can't get Enogh", view: 150, likes: 100, dislikes: "3K", src: "20.mpeg", fav: 'false' },
+                { name: "Back to you", view: 350, likes: 300, dislikes: "8K", src: "21.mpeg", fav: 'FAVOURITE' },
+            ];
+            $scope.favo = function (na) {
+                $scope.test = 'FAVOURITE';
+                $scope.hide1 = true;
+                $scope.hide = true;
+                console.log($scope.hide);
+            };
+            $scope.orderByMe = function (na) {
+                $scope.myOrderBy = na;
+                $scope.hide = true;
+                $scope.hide1 = false;
+                $scope.test = '';
+            };
+            $scope.settrue = function (na) {
+                $scope.hide = true;
+                $scope.hide1 = false;
+            };
+            $scope.removeItem = function (x) {
+                $scope.names.splice(x, 1);
+            };
+         });
+
+    </script>
+</body>
+</html>
